@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FitScale</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+<div class="container">
+    <aside class="sidebar">
+        <h2 class="logo">FitScale</h2>
+        <button class="tab-btn" onclick="showTab('home')">Home</button>
+        <button class="tab-btn" onclick="showTab('bmi')">BMI Calculator</button>
+        <button class="tab-btn" onclick="showTab('fitbot')">FitBot</button>
+    </aside>
+    <main class="main-content">
+        <section id="home" class="tab-content active">
+            <h1>Welcome to FitScale</h1>
+            <p>FitScale is a lightweight fitness helper: calculate your BMI, learn which category you belong to, and get tailored meal plans, workouts, and tips from FitBot — a guided, option-driven assistant (no external AI required).</p>
+            <h2>Why BMI?</h2>
+            <p>BMI is a simple metric to estimate body composition. Use it as a quick health guideline — FitBot will give tailored tips based on your BMI category.</p>
+            <h2>How FitBot works</h2>
+            <ol>
+                <li>Open FitBot tab</li>
+                <li>Select your BMI category (or calculate it with the BMI tab)</li>
+                <li>Choose a topic: Meal Plans, Workouts, or Key Suggestions</li>
+                <li>Thank FitBot to end the session</li>
+            </ol>
+            <h2>Touch & Mobile Friendly</h2>
+            <p>Large buttons and touch support make this app work smoothly on phones and tablets.</p>
+        </section>
+
+        <section id="bmi" class="tab-content">
+            <h1>BMI Calculator</h1>
+            <form action="/bmi" method="POST" class="bmi-form">
+                <label>Weight:</label>
+                <input type="number" name="weight" placeholder="Enter weight" required>
+                <label>Height:</label>
+                <input type="number" name="height" placeholder="Enter height" required>
+                <label>Unit:</label>
+                <select name="unit">
+                    <option value="metric">Metric (kg/cm)</option>
+                    <option value="imperial">Imperial (lbs/inches)</option>
+                </select>
+                <button type="submit">Calculate BMI</button>
+            </form>
+            {% if bmi %}
+            <p>Your BMI: {{ bmi }}</p>
+            <p>Category: {{ category }}</p>
+            {% endif %}
+        </section>
+
+        <section id="fitbot" class="tab-content">
+            <h1>FitBot</h1>
+            <div id="fitbot-chat" class="chat-box"></div>
+            <div id="fitbot-options" class="options"></div>
+        </section>
+    </main>
+</div>
+<script src="{{ url_for('static', filename='js/app.js') }}"></script>
+<script>
+function showTab(tabId) {
+    document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+    document.getElementById(tabId).classList.add('active');
+}
+</script>
+</body>
+</html>
