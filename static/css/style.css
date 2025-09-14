@@ -1,132 +1,19 @@
-body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background-color: #f0f2f1;
-    color: #1b3b1b;
-}
-
-.container {
-    display: flex;
-    min-height: 100vh;
-}
-
-.sidebar {
-    width: 220px;
-    background-color: #1a391a;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.sidebar .logo {
-    font-size: 28px;
-    font-weight: bold;
-    color: #ffffff;
-    margin: 20px 0;
-}
-
-.sidebar button {
-    background: #1a391a;
-    border: none;
-    color: #fff;
-    padding: 20px;
-    font-size: 16px;
-    cursor: pointer;
-    text-align: center;
-    width: 100%;
-    transition: background 0.3s;
-}
-
-.sidebar button:hover {
-    background-color: #0f270f;
-}
-
-.main-content {
-    flex: 1;
-    padding: 30px;
-    overflow-y: auto;
-}
-
-.tab-content {
-    display: none;
-    animation: fadeIn 0.5s ease-in-out;
-}
-
-.tab-content.active {
-    display: block;
-}
-
-h1, h2 {
-    color: #1b3b1b;
-}
-
-.bmi-form input, .bmi-form select, .bmi-form button {
-    display: block;
-    margin: 10px 0;
-    padding: 10px;
-    font-size: 16px;
-    width: 100%;
-    max-width: 300px;
-}
-
-.chat-box {
-    border: 2px solid #1a391a;
-    padding: 10px;
-    height: 300px;
-    overflow-y: auto;
-    background-color: #e4efe4;
-    margin-bottom: 10px;
-    border-radius: 10px;
-}
-
-.user-message {
-    text-align: right;
-    margin: 5px 0;
-    background-color: #c1dbbd;
-    display: inline-block;
-    padding: 8px 12px;
-    border-radius: 12px;
-    max-width: 70%;
-}
-
-.bot-message {
-    text-align: left;
-    margin: 5px 0;
-    background-color: #ffffff;
-    display: inline-block;
-    padding: 8px 12px;
-    border-radius: 12px;
-    max-width: 70%;
-}
-
-.options {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-}
-
-.option-btn {
-    padding: 10px 15px;
-    background-color: #1a391a;
-    color: #fff;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: 0.3s;
-}
-
-.option-btn:hover {
-    background-color: #0f270f;
-}
-
-@keyframes fadeIn {
-    from {opacity: 0;}
-    to {opacity: 1;}
-}
-
-@media (max-width: 768px) {
-    .container {flex-direction: column;}
-    .sidebar {width: 100%; flex-direction: row; overflow-x: auto;}
-    .sidebar button {flex: 1;}
-    .sidebar .logo {flex: 1; text-align: center;}
-}
+body { margin: 0; font-family: Arial, sans-serif; background-color: #d4f1d4; /* Light green background */ color: #1b3b1b; }
+.container { display: flex; min-height: 100vh; }
+.sidebar { width: 220px; background-color: #a3d9a3; display: flex; flex-direction: column; align-items: center; }
+.sidebar .logo { font-size: 28px; font-weight: bold; color: #ffffff; margin: 20px 0; }
+.sidebar button { background: #a3d9a3; border: none; color: #1b3b1b; padding: 20px; font-size: 16px; cursor: pointer; text-align: center; width: 100%; transition: background 0.3s; }
+.sidebar button:hover { background-color: #86c786; }
+.main-content { flex: 1; padding: 30px; overflow-y: auto; }
+.tab-content { display: none; animation: fadeIn 0.5s ease-in-out; }
+.tab-content.active { display: block; }
+h1, h2 { color: #1b3b1b; }
+.bmi-form input, .bmi-form select, .bmi-form button { display: block; margin: 10px 0; padding: 10px; font-size: 16px; width: 100%; max-width: 300px; }
+.chat-box { border: 2px solid #86c786; padding: 10px; height: 300px; overflow-y: auto; background-color: #e4f5e4; margin-bottom: 10px; border-radius: 10px; display: flex; flex-direction: column; gap: 5px; }
+.user-message { align-self: flex-end; background-color: #c1eac1; padding: 8px 12px; border-radius: 12px; max-width: 70%; }
+.bot-message { align-self: flex-start; background-color: #ffffff; padding: 8px 12px; border-radius: 12px; max-width: 70%; }
+.chat-box div { animation: fadeIn 0.3s ease-in-out; }
+.options { display: flex; flex-wrap: wrap; gap: 10px; }
+.option-btn { padding: 10px 15px; background-color: #a3d9a3; color: #1b3b1b; border: none; border-radius: 8px; cursor: pointer; transition: 0.3s; }
+.option-btn:hover { background-color: #86c786; }
+@media (max-width: 768px) { .container {flex-direction: column;} .sidebar {width: 100%; flex-direction: row; overflow-x: auto;} .sidebar button {flex: 1;} .sidebar .logo {flex: 1; text-align: center;} }

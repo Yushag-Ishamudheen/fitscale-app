@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request, jsonify
+import os
 
 app = Flask(__name__)
 
@@ -20,7 +21,9 @@ def bmi():
         else:
             bmi_value = "Invalid unit"
 
-        if bmi_value < 18.5:
+        if bmi_value == "Invalid unit":
+            category = ""
+        elif bmi_value < 18.5:
             category = "Underweight"
         elif 18.5 <= bmi_value < 25:
             category = "Fit"
@@ -31,26 +34,22 @@ def bmi():
     except Exception:
         return render_template("index.html", bmi="Invalid input", category="")
 
-# FitBot endpoint
 @app.route("/fitbot", methods=["POST"])
 def fitbot():
     data = request.get_json()
     message = data.get("message", "")
     category = data.get("category", "")
-    
-    # Initial greeting
+
     if message == "start":
-        response = "Hi, I’m FitBot. I can guide you based on your BMI. Which category do you belong to?"
+        response = "Hi! I’m FitBot. Select your BMI category to get started."
         options = ["Underweight", "Fit", "Overweight"]
         return jsonify({"response": response, "options": options, "category": ""})
-    
-    # Set category
+
     if category == "" and message in ["Underweight", "Fit", "Overweight"]:
-        response = f"Great! You selected {message}. What do you want to know?"
+        response = f"Great! You selected {message}. What would you like to know?"
         options = ["Meal Plans", "Workouts", "Key Suggestions", "Thank FitBot"]
         return jsonify({"response": response, "options": options, "category": message})
 
-    # Handle topic selection
     if message in ["Meal Plans", "Workouts", "Key Suggestions"]:
         content = {
             "Meal Plans": "Include balanced meals with proteins, carbs, and healthy fats.",
@@ -62,10 +61,11 @@ def fitbot():
         return jsonify({"response": response, "options": options, "category": category})
 
     if message == "Thank FitBot":
-        response = "You’re welcome! Stay healthy and fit!"
+        response = "You're welcome! Stay healthy and fit!"
         return jsonify({"response": response, "options": [], "category": ""})
 
     return jsonify({"response": "I didn't understand. Please select an option.", "options": [], "category": category})
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host="0.0.0.0", port=port, debug=True)
